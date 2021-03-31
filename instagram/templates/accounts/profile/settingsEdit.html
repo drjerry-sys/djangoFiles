@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block main_content %}
+    <div class="container">
+        <div style="height: 50px;"></div>
+        <div class="row bg-white border border-1">
+            <div class="col-3 border border-top-0 border-left-0 border-bottom-0">
+            <div></div>
+                <ul class="nav flex-column m-0 nav-tabs mt-3 border border-0">
+                    <a class="nav-link py-4 text-dark" href="{% url 'accnt' %}" {% if toActive == '1' %}id="ccc"{% endif %}>Edit Profile</a>
+                    <a class="nav-link py-4 text-dark" href="{% url 'password_change' %}" {% if toActive != '1' and toActive != '3' %}id="ccc"{% endif %}>Change Password</a>
+                    <a class="nav-link py-4 text-dark" href="{% url 'act_login' %}" {% if toActive == '3' %}id="ccc"{% endif %}>Login Activity</a>
+                </ul>
+            </div>
+            <div class="col-9">
+                {% block changeable %}
+                <div class=" d-flex pt-5 justify-content-center" style="">
+                    <div class="mr-3 rounded-circle bg-light border border-1 " style="height: 45px; width: 45px;">
+                        <img src="{{ request.GET.url }}" alt="">
+                    </div>
+                    <div class="">
+                        <p style="font-size: 15px;" class="my-auto"><b>willi_seun</b></p>
+                        <a href="" style="font-size: 13px; font-weight: 700;" class="my-auto">Change Profile Photo</a>
+                    </div>
+                </div>
+                <form action="" method="post" onkeyup="toEnable()" class="form-group mx-auto mt-5" style="width: 60%;" id="formTag">
+                    {% csrf_token %}
+                    <h5>{{ form1|crispy }}</h5>
+                    <h5>{{ form2|crispy }}</h5>
+                    <button class="btn btn-primary btn-md " id="formSubmit" Disabled><b>submit</b></button>
+                </form>
+                {% endblock changeable %}
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}
+{% block pageScript %}
+    <script>
+        const toEnable = ()=> {formSubmit.disabled = false};
+        $(document).ready(function() {
+            $('#formTag').submit(function(e){
+                e.preventDefault();
+                formSubmit.disabled = true;
+                $.ajax({
+                    type:$(this).attr('method'),
+                    url: "{% url 'edit_done' %}",
+                    data: $('#formTag').serialize(),
+                    success: function(response) {
+                        console.log(response);
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock pageScript %}

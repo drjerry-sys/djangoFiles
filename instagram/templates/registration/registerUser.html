@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block main_content %}
+{% block conf_account %}
+<form action="." class="bg-white w-50 mx-auto border border-2" style="margin-top: 90px;" method="post">
+    <div style="width: 55%; margin: 0 auto;" class="py-5">
+        <h3 class=""><i>{% block ___ %}Sign Up{% endblock ___ %}</i></h3>
+        {% csrf_token %}
+            {{ r_form|crispy }}
+            <p style="text-align: right;"><a href="{% url 'login' %}">already have an account?</a></p>
+        <button class="btn btn-success form-control"><b>submit</b></button>
+    </div>
+</form>
+{% endblock conf_account %}
+{% endblock main_content %}

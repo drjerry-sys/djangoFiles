@@ -1,0 +1,17 @@
+{% extends '../profile/settingsEdit.html' %}
+{% block changeable %}
+<div class='container py-3 pb-2'>
+    <p class="text-dark-50 mt-3" style="font-size: 23px;">Login Activity</p>
+    <p class="text-dark mt-0 pt-0" style="font-size: 18px;">Was This You?</p><br>
+    {% for userSes in mySessions %}
+        <div class="border border-1 w-50" style="height: 100px;">
+            <h5 class="text-muted text-center mt-4">{{userSes.3}}, {{userSes.4}}</h5>
+            <p class="text-center text-muted mb-0">logged in: <b>{{userSes.5.time}}</b></p>
+            <p class="text-center text-muted">logged out: <b>{{userSes.6.time}}</b></p>
+        </div>
+        <a href="" class="btn btn-info mt-1 w-50 mx-auto mb-5"><i>Log Me Out from this device</i></a>
+    {% endfor %}
+</div>
+{% endblock changeable %}
+{% block pageScript %}
+{% endblock pageScript %}

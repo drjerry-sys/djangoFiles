@@ -1,0 +1,16 @@
+{% extends '../registration/registerUser.html' %}
+{% load crispy_forms_tags %}
+{% block ___ %}{% endblock ___ %}
+{% block conf_account %}
+<form action="{% url 'confirm_reg' %}" class="bg-white w-50 mx-auto border border-2" style="margin-top: 90px;" method="post">
+    <div style="width: 55%; margin: 0 auto;" class="py-5">
+        {% if to_raise %}
+            <p class="alert alert-danger">this code is not correct</p>
+        {% endif %}
+        <h3 class=""><i>Activate</i></h3>
+        {% csrf_token %}
+            {{conf_form|crispy}}
+        <button class="btn btn-success form-control"><b>submit</b></button>
+    </div>
+</form>
+{% endblock conf_account %}

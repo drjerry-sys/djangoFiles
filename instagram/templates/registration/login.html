@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block header %}{% endblock header %}
+{% block main_content %}
+<form action="" class="bg-white w-50 mx-auto border border-2" method="post">
+    <div style="width: 55%; margin: 0 auto;" class="py-5">
+        <h1 class=""><i>Social</i></h1>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p style="text-align: right;"><a href="{% url 'register' %}">Don't have an account?</a> &nbsp; &nbsp;<a href="{% url 'password_reset' %}">forgot password?...</a></p>
+        <button class="btn btn-success form-control"><b>submit</b></button>
+    </div>
+</form>
+{% endblock main_content %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block main_content %}
+<main>
+    <div class="container">
+        <div class="media p-4 border border-0">
+            <div class="mr-3 rounded-circle bg-dark " style="height: 150px; width: 150px;"></div>
+            <div class="mx-5 px-5">
+                <div class="d-flex">
+                    <p style="font-size: 25px;" class="my-auto">__Obaloluwa_</p>
+                    
+                    {% if username == 1 %}
+                    <button class="btn btn-default btn-md border border-1 mx-3 my-auto py-0" onclick="editP()" style="height: 30px;">Edit Profile</button>
+                    <button class="rounded-circle border-0 bg-info" style="height: 30px; width: 30px;"></button>
+                    {% else %}
+                    <button class="btn btn-primary btn-md border border-1 mx-2 my-auto py-0" style="height: 30px;">Follow</button>
+                    <button class="btn btn-primary mr-1 my-auto" style="height: 30px;">&DownArrow;</button>
+                    <button type="button" class="btn my-auto" data-toggle="modal" data-target="#myModal"><b>...</b></button>
+                    {% endif %}
+                </div>
+                <div class="d-flex mt-3 mb-3">
+                    <p style="font-size: 15px;" class="my-auto mr-5"><b>1</b> post</p>
+                    <a href="" style="font-size: 15px;" class="my-auto text-dark mr-5"><b>67</b> followers</a>
+                    <a href="" class="my-auto text-dark mr-5"><b>197</b> following</a>
+                </div>
+                <p style="font-size: 17px;" class="my-auto"><b>Obaloluwa Jeremiah</b></p>
+                {% if username == 0 %}
+                <p style="font-size: 12px;" class="mt-2 text-dark-50">Followed by <b>Damilare Ogunjobi</b></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <p><a href="" class="text-black-50">Block this user</a></p><hr>
+              <p><a href="" class="text-black-50">Restrict</a></p><hr>
+              <p><a href="" class="text-black-50">Report user</a></p><hr>
+              <p><a href="" class="text-black-50">Cancel</a></p><hr>
+                
+            </div>
+      
+          </div>
+        </div>
+      </div>
+
+
+    <div class="container">
+        <ul class="nav nav-tabs justify-content-center mb-4">
+            <li class="nav-item" style="font-size: 13px;"><a href="" class="nav-link text-black-50"><b>POSTS</b></li></a>
+            {% if username == 1 %}
+            <li class="nav-item" style="font-size: 13px;"><a href="" class="nav-link text-black-50"><b>IGTV</b></li></a>
+            <li class="nav-item" style="font-size: 13px;"><a href="" class="nav-link text-black-50"><b>SAVED</b></li></a>
+            {% endif %}
+            <li class="nav-item" style="font-size: 13px;"><a href="" class="nav-link text-black-50"><b>TAGGED</b></li></a>
+        </ul>
+        <div class="row">
+            <div class="col-sm-4"><div class="box bg-info" style="height: 300px;"></div></div>
+            <div class="col-sm-4"><div class="box bg-info" style="height: 300px;"></div></div>
+            <div class="col-sm-4"><div class="box bg-info" style="height: 300px;"></div></div>
+        </div>
+    </div>
+</main>
+{% endblock main_content %}
+{% block pageScript %}
+    <script>
+        const editP = ()=> {window.location = '{% url "accnt" %}'};
+    </script>
+{% endblock pageScript %}
